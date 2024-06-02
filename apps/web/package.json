@@ -12,6 +12,7 @@
   "dependencies": {
     "@hookform/resolvers": "^3.4.2",
     "@repo/ui": "*",
+    "axios": "^1.7.2",
     "lucide-react": "^0.383.0",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.51.5",
