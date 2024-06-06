@@ -2,8 +2,10 @@
     "name": "api",
     "private": true,
     "version": "0.0.0",
-    "type": "commonjs",
     "scripts": {
+        "database:seed": "ts-node prisma/seed.ts",
+        "database:reset": "prisma migrate reset",
+        "database:up": "prisma migrate dev",
         "watch": "tsc -w",
         "dev": "nodemon build/index.js",
         "start:dev": "concurrently \"tsc -w\" \"nodemon build/index.js\"",
@@ -13,6 +15,7 @@
         "migration": " npm run typeorm migration:run -- -d ./src/data-source.ts"
     },
     "dependencies": {
+        "@prisma/client": "^5.15.0",
         "@types/cors": "^2.8.15",
         "bcrypt": "^5.1.1",
         "dotenv": "^16.3.1",
@@ -31,10 +34,10 @@
         "@types/memory-cache": "^0.2.4",
         "@types/node": "^16.11.10",
         "concurrently": "^8.2.2",
+        "nodemon": "^2.0.15",
         "prettier": "^3.2.5",
         "prisma": "^5.13.0",
         "ts-node": "10.7.0",
-        "typescript": "4.5.2",
-        "nodemon": "^2.0.15"
+        "typescript": "^5.4.5"
     }
 }
