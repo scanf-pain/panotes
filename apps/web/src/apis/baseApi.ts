@@ -6,15 +6,12 @@ const axiosPublic = axios.create({
   baseURL: BASE_URL,
 });
 
-const axiosPrivate = axios.create({
-  baseURL: BASE_URL,
-  headers: { "Content-Type": "application/json" },
-  withCredentials: true,
-});
+// const axiosPrivate = axios.create({
+//   baseURL: BASE_URL,
+//   headers: { "Content-Type": "application/json" },
+//   withCredentials: true,
+// });
 
-const baseApi = {
-  axiosPublic,
-  axiosPrivate,
-};
+const baseApi = axiosPublic;
 
 export default baseApi;
