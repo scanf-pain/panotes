@@ -8,10 +8,23 @@ import HomePage from "./pages/HomePage";
 
 import "@repo/ui/styles.css";
 import "./globals.css";
+
 import CreateNotePage from "./pages/CreateNotePage";
 import EditNotePage from "./pages/EditNotePage";
 import NoteDetailPage from "./pages/NoteDetailPage";
 
+/* Mock service worker for api calls */
+async function deferRender() {
+  if (process.env.NODE_ENV !== "developement") {
+    return;
+  }
+
+  const { worker } = await import("./mocks/browser");
+
+  return worker.start();
+}
+
+/* Routing */
 const router = createBrowserRouter([
   {
     path: "/app",
@@ -38,8 +51,10 @@ const router = createBrowserRouter([
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
-);
+deferRender().then(() => {
+  ReactDOM.createRoot(document.getElementById("root")!).render(
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  );
+});
